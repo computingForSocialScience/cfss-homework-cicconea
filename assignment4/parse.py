@@ -35,7 +35,7 @@ def get_avg_latlng():
 # contractor zip codes.
 
 def zip_code_barchart():
-	lines = readCSV("permits.csv")
+	lines = readCSV("permits_hydepark.csv")
 	contractorZip = {}
 	for line in lines: # only the lines below are zip code lines
 		zips = [line[28], line[35], line[42], line[49], line[56], line[63], line[70], line[77], line[84], line[91], line[98], line[105], line[112], line[119], line[126]]
@@ -50,7 +50,7 @@ def zip_code_barchart():
 	plt.bar(range(len(contractorZip)), contractorZip.values(), align='center')
 	plt.xticks(range(len(contractorZip)), contractorZip.keys(), rotation=25)
 
-
+	#plt.show()
 	plt.savefig('zipcodesHist.jpg')
 
 
