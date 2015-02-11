@@ -15,6 +15,7 @@ def fetchAlbumIds(artist_id):
 	for item in albumData["items"]:
 		AlbumList.append(item["id"])
 
+	print len(AlbumList)
 	return AlbumList
 
 def fetchAlbumInfo(album_id):
@@ -36,6 +37,6 @@ def fetchAlbumInfo(album_id):
 
 	return AlbumDict
 
-info = fetchAlbumIds(sys.argv[1])
-for album in info:
-	print fetchAlbumInfo(album)
+#info = fetchAlbumIds(sys.argv[1])
+#for album in info:
+#	print fetchAlbumInfo(album)

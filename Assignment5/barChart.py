@@ -49,6 +49,3 @@ def plotBarChart():
     ax.set_ylabel('number of albums') # set y axis label
     ax.set_title('Totals for ' + ', '.join(artist_names)) # set title including all the artist names from artist csv file
     plt.show() # display plot
-
-
-plotBarChart()

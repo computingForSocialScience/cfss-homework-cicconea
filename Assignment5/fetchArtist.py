@@ -44,10 +44,10 @@ def fetchArtistInfo(artist_id):
 	infoDict["name"] = artistData["name"]
 	infoDict["popularity"] = artistData["popularity"]
 
-	return [infoDict]
+	return infoDict
 
-identification = fetchArtistId(sys.argv[1])
-print fetchArtistInfo(identification)
+#identification = fetchArtistId(sys.argv[1])
+#print fetchArtistInfo(identification)
 
 
 

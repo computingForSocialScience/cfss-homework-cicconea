@@ -21,14 +21,13 @@ def writeArtistsTable(artist_info_list):
 			else:
 				writeString = writeString + unicode(dictionary[key]) + unicode(",")
 
-		print writeString
 		f.write(writeString)
 
 	f.close()
-
-
 	pass 
-      
+
+
+
 def writeAlbumsTable(album_info_list):
 	"""
 	Given list of dictionaries, each as returned
@@ -53,7 +52,6 @@ def writeAlbumsTable(album_info_list):
 			else:
 				writeString = writeString + unicode(dictionary[key]) + unicode(",")
 
-		print writeString
 		f.write(writeString)
 
 	f.close()
@@ -62,12 +60,12 @@ def writeAlbumsTable(album_info_list):
 
 	pass
 
-artDict = [{'genres': [u'garage rock'], 'popularity': 82, 'followers': 1319880, 'id': u'7mnBLXK823vNxN3UWB7Gfz', 'name': u'The Black Keys'}]
+#artDict = [{'genres': [u'garage rock'], 'popularity': 82, 'followers': 1319880, 'id': u'7mnBLXK823vNxN3UWB7Gfz', 'name': u'The Black Keys'}]
 
-testDict = [{'popularity': 73, 'artist_id': u'7mnBLXK823vNxN3UWB7Gfz', 'year': u'2010', 'name': u'Brothers', 'album_id': u'7qE6RXYyz5kj5Tll7mJU0v'}, {'popularity': 62, 'artist_id': u'7mnBLXK823vNxN3UWB7Gfz', 'year': u'2008', 'name': u'Attack & Release', 'album_id': u'1YHS3Fw8THvsKVVQ1znAqi'},{'popularity': 58, 'artist_id': u'7mnBLXK823vNxN3UWB7Gfz', 'year': u'2006', 'name': u'Magic Potion', 'album_id': u'4jFfuHyKmhGeipjRmKIh8O'},{'popularity': 60, 'artist_id': u'7mnBLXK823vNxN3UWB7Gfz', 'year': u'2004', 'name': u'Rubber Factory', 'album_id': u'6OphQUjIBIZHXzugkjMjxz'},{'popularity': 58, 'artist_id': u'7mnBLXK823vNxN3UWB7Gfz', 'year': u'2003', 'name': u'Thickfreakness', 'album_id': u'1BicwqogYc0pnMIH3tr0cM'},{'popularity': 59, 'artist_id': u'7mnBLXK823vNxN3UWB7Gfz', 'year': u'2002', 'name': u'The Big Come Up', 'album_id': u'7DDMtj3GwKJ8HHBm18OdKT'}]
+#testDict = [{'popularity': 73, 'artist_id': u'7mnBLXK823vNxN3UWB7Gfz', 'year': u'2010', 'name': u'Brothers', 'album_id': u'7qE6RXYyz5kj5Tll7mJU0v'}, {'popularity': 62, 'artist_id': u'7mnBLXK823vNxN3UWB7Gfz', 'year': u'2008', 'name': u'Attack & Release', 'album_id': u'1YHS3Fw8THvsKVVQ1znAqi'},{'popularity': 58, 'artist_id': u'7mnBLXK823vNxN3UWB7Gfz', 'year': u'2006', 'name': u'Magic Potion', 'album_id': u'4jFfuHyKmhGeipjRmKIh8O'},{'popularity': 60, 'artist_id': u'7mnBLXK823vNxN3UWB7Gfz', 'year': u'2004', 'name': u'Rubber Factory', 'album_id': u'6OphQUjIBIZHXzugkjMjxz'},{'popularity': 58, 'artist_id': u'7mnBLXK823vNxN3UWB7Gfz', 'year': u'2003', 'name': u'Thickfreakness', 'album_id': u'1BicwqogYc0pnMIH3tr0cM'},{'popularity': 59, 'artist_id': u'7mnBLXK823vNxN3UWB7Gfz', 'year': u'2002', 'name': u'The Big Come Up', 'album_id': u'7DDMtj3GwKJ8HHBm18OdKT'}]
 
-writeAlbumsTable(testDict)
-writeArtistsTable(artDict)
+#writeAlbumsTable(testDict)
+#writeArtistsTable(artDict)
 
 
 
