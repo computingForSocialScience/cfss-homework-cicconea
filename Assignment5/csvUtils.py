@@ -15,9 +15,9 @@ def writeArtistsTable(artist_info_list):
 		writeString = unicode("")
 		for key in itList:
 			if key == "popularity":
-				writeString = writeString + unicode(dictionary[key]) + unicode("\n")
+				writeString = writeString + '"' + unicode(dictionary[key]) + '"' + unicode("\n")
 			else:
-				writeString = writeString + unicode(dictionary[key]) + unicode(",")
+				writeString = writeString + '"' + unicode(dictionary[key]) + '"'+ unicode(",")
 
 		print writeString
 		f.write(writeString)
