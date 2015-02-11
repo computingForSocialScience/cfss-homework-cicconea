@@ -38,8 +38,38 @@ def writeAlbumsTable(album_info_list):
 	The csv file should have a header line that looks like this:
 	ARTIST_ID,ALBUM_ID,ALBUM_NAME,ALBUM_YEAR,ALBUM_POPULARITY
 	"""
+
+	f = open("albums.csv", mode="w")
+	f.write(u'ARTIST_ID,ALBUM_ID,ALBUM_NAME,ALBUM_YEAR,ALBUM_POPULARITY\n')
+
+	itList = ["artist_id", "album_id", "name", "year", "popularity"]
+	for dictionary in album_info_list:
+		writeString = unicode("")
+		for key in itList:
+			if key == "popularity":
+				writeString = writeString + unicode(dictionary[key]) + unicode("\n")
+			elif key == "name":
+				writeString = writeString + '"' + unicode(dictionary[key]) + '"'
+			else:
+				writeString = writeString + unicode(dictionary[key]) + unicode(",")
+
+		print writeString
+		f.write(writeString)
+
+	f.close()
+
+
+
 	pass
 
-testDict = [{'genres': [u'garage rock'], 'popularity': 82, 'followers': 1319841, 'id': u'7mnBLXK823vNxN3UWB7Gfz', 'name': u'The Black Keys'}]
 
-writeArtistsTable(testDict)
+
+
+testDict = [{'popularity': 15, 'artist_id': u'2BTZIqw0ntH9MvilQ3ewNY', 'year': u'1983', 'name': u"She's So Unusual", 'album_id': '0sNOF9WDwhWunNAHPD3Baj'}]
+writeAlbumsTable(testDict)
+
+
+
+
+
+
