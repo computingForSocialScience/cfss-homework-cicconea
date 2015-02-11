@@ -36,5 +36,6 @@ def fetchAlbumInfo(album_id):
 
 	return AlbumDict
 
-
-print fetchAlbumInfo(sys.argv[1])
+info = fetchAlbumIds(sys.argv[1])
+for album in info:
+	print fetchAlbumInfo(album)

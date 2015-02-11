@@ -48,4 +48,4 @@ def plotBarChart():
     plt.show()
 
 
-    
+plotBarChart()
