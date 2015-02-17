@@ -59,7 +59,7 @@ def writeEdgeList(artistID, depth, filename):
 	return
 
 
-writeEdgeList(sys.argv[1], int(sys.argv[2]), sys.argv[3])
+getEdgeList(sys.argv[1], int(sys.argv[2]), sys.argv[3])
 
 
 
