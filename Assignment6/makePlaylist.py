@@ -61,7 +61,7 @@ artList = sys.argv[1:]
 
 tempList = pd.DataFrame()
 for art in artList:
-	tempList = combineEdgelists(tempList, getEdgeList(art, 2))
+	tempList = combineEdgeLists(tempList, getEdgeList(art, 2))
 
 sample = pandasToNetworkX(tempList)
 counter = 1

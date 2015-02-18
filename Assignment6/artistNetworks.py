@@ -48,7 +48,7 @@ def getDepthEdges(artistID, dep):
 
 def getEdgeList(artistID, depth):
 	res = list(getDepthEdges(artistID, depth))
-	result = np.array(res, dtype=[('artist', 'a50'),('relatedArtist', 'a50')])
+	result = np.array(res, dtype=[("artist", 'a50'),("relatedArtist", 'a50')])
 	
 	return pd.DataFrame(result)
 
