@@ -26,7 +26,7 @@ def degree(edgeList, in_or_out):
 	return returnDegree
 
 def combineEdgelists(edgeList1, edgeList2):
-	edgeList1.append(edgeList2)
+	edgeList1 = edgeList1.append(edgeList2)
 	edgeList1.drop_duplicates()
 	return edgeList1
 
@@ -47,11 +47,11 @@ def randomCentralNode(inputDiGraph):
 	return randomNode
 
 
-edges = readEdgeList("testEdges.csv")
-graph = pandasToNetworkX(edges)
+#edges = readEdgeList("testEdges.csv")
+#graph = pandasToNetworkX(edges)
 
 
-print randomCentralNode(graph)
+#print randomCentralNode(graph)
 
 
 
