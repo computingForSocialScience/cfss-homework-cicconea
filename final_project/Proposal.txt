@@ -1,0 +1,21 @@
+What: My thesis project is on the optimal transition time of the CO2 emitting
+electricity sector to a low-emitting technology. Given a fixed energy demand
+in a region, and a mix of high-emitting and low-emitting capital that supplies
+electricity, I model the lowest-cost transition from high emitting to low 
+according to the following constraints. Both capital stocks depreciate
+linearly at rate 1/n, and can be replaced by high-emitting (coal/gas) or 
+low-emitting (wind/solar) infrastructure investment over a period of n years. 
+We are subjected to a carbon emissions cap, and exogenenously determined
+efficiency vectors. The full math for this model can be viewed here: 
+https://www.overleaf.com/2216241ydfnyp#/5663621/
+
+Why: This project is important because it bridges the technical literature on
+required investments in clean energy to avoid damaging climate change and the 
+economic optimization of existing electricity-generating assets. 
+
+How: I have code written to perform this optimization using the pulp library
+for linear programming in python. My website will allow the user to select
+several exogenous parameters as well as the carbon budget and timing over 
+which we perform the optimization. Several key graphs will be plotted and 
+displayed either statically or generated with javascript D3 if I can figure
+it out. 
