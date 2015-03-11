@@ -24,7 +24,10 @@ def createNewPlaylist(artist):
 
     randomArtistList = []
     while counter <= 30:
-        randomArtistList.append(randomCentralNode(sample))
+        randomArtist = randomCentralNode(sample)
+        if getRandomAlbum(randomArtist) == "":
+            continue
+        randomArtistList.append(randomArtist)
         counter += 1
 
  
@@ -48,8 +51,6 @@ def createNewPlaylist(artist):
 
         lineTuple = (latestID, songOrder, artistName, albumName, artTrack)
         
-        print lineTuple
-
         songOrder += 1
         playList.append(lineTuple)
 
@@ -84,7 +85,7 @@ def make_playlist_resp(playlistId):
         FROM songs WHERE playlistId = %s ORDER BY songOrder'''
     cur.execute(query, playlistId)
     songs = cur.fetchall()
-    
+
     return render_template('playlist.html',songs=songs)
 
 
@@ -96,7 +97,9 @@ def add_playlist():
     elif request.method == 'POST':
         # this code executes when someone fills out the form
         artistName = request.form['artistName']
-        # YOUR CODE HERE
+
+        createNewPlaylist(artistName)
+
         return(redirect("/playlists/"))
 
 
