@@ -79,6 +79,12 @@ def make_playlists_resp():
 
 @app.route('/playlist/<playlistId>')
 def make_playlist_resp(playlistId):
+
+    query = '''SELECT songOrder, artistName, albumName, trackName 
+        FROM songs WHERE playlistId = %s ORDER BY songOrder'''
+    cur.execute(query, playlistId)
+    songs = cur.fetchall()
+    
     return render_template('playlist.html',songs=songs)
 
 
