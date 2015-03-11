@@ -56,13 +56,8 @@ def createNewPlaylist(artist):
 
     insertSongQuery = '''INSERT INTO songs (playlistId, songOrder, artistName, albumName, trackName) VALUES (%s, %s, %s, %s, %s)'''
     cur.executemany(insertSongQuery, playList)
-        
-
     db.commit()
 
-
-
-createNewPlaylist("Led Zeppelin")
 
 
 
@@ -75,6 +70,10 @@ def make_index_resp():
 
 @app.route('/playlists/')
 def make_playlists_resp():
+
+    cur.execute("SELECT * FROM playlists;")
+    playlists = cur.fetchall()
+
     return render_template('playlists.html',playlists=playlists)
 
 
