@@ -6,7 +6,7 @@ matplotlib.use('Agg') # this allows PNG plotting
 import matplotlib.pyplot as plt
 from capital_min_model import *
 from func_gen import *
-from bokeh.plotting import figure
+from bokeh.plotting import figure, output_file, show
 from bokeh.resources import CDN
 from bokeh.embed import file_html, components
 from mc import *
@@ -20,10 +20,8 @@ db=pymysql.connect(db=dbname, host=host, user=user,passwd=passwd, charset='utf8'
 cur = db.cursor()
 
 
-
-
-
 app = Flask(__name__)
+
 
 def addLatestRun(chartLabel, FLScale, period, alpha , nh, nl):
         lineTuple = (chartLabel, FLScale, period, alpha , nh, nl)
@@ -85,21 +83,44 @@ def make_results_resp():
 
 	minCost, solved, Hp, Hn, Lp, Ln = storeData(FLScale, period, alpha, nh, nl)
 
-	print "Model Solved"
-	# generate Bokeh HTML elements
-	# create a `figure` object
-	p = figure(title='A Bokeh plot',plot_width=500,plot_height=400)
-	# add the line
+	print solved
+	print Hp
+
 	x = range(1, period+1)
 	y = Hp
+
+	# generate matplotlib plot
+	fig = plt.figure(figsize=(5,4),dpi=100)
+	axes = fig.add_subplot(1,1,1)
+	# plot the data
+	axes.plot(x,y)
+	# labels
+	axes.set_xlabel('time')
+	axes.set_ylabel('size')
+	axes.set_title("A matplotlib plot")
+	# make the temporary file
+	f = tempfile.NamedTemporaryFile(dir='static/temp',suffix='.png',delete=False)
+	# save the figure to the temporary file
+	plt.savefig(f)
+	f.close() # close the file
+	# get the file's name (rather than the whole path) (the template will need that)
+	plotPng = f.name.split('/')[-1]
+
+
+
+	# generate Bokeh HTML elements
+	# create a `figure` object
+	p = figure(title='Positive Investment - Dirty',plot_width=500,plot_height=400)
+	# add the line
+
 	p.line(x,y)
 	# add axis labels
 	p.xaxis.axis_label = "time"
-	p.yaxis.axis_label = "size"
+	p.yaxis.axis_label = "investment"
 	# create the HTML elements
 	figJS,figDiv = components(p,CDN)
 
-	return render_template("results.html", y=y, figJS = figJS, figDiv = figDiv)
+	return render_template("results.html",figJS = figJS, figDiv = figDiv, plotPng=plotPng)
 
 
 
