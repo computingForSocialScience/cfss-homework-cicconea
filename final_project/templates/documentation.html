@@ -1,0 +1,102 @@
+<html>
+<head><title>Documentation</title>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+</head>
+<body>
+
+<h3>Capital Constraints</h3>
+
+
+<p>Total electricity capacity demanded (MW installed capacity) in the economy is fixed at $\bar{G_t}$, which grows exogenously. This capacity consists of high carbon-intensity capital, $k^h_t$ that produces electricity at efficiency, $F^h_t$ (MW/unit of installed capacity), and low carbon-intensity capital, $k^l_t$, with efficiency, $F^l_t$. Capital depreciates linearly over n years; in each year, 1/n of the prior period's capital turns over and is replaced with low intensity capital.</p>
+
+<p>Furthermore, I allow additional investment in either high intensity ($H_t$) or low intensity ($L_t$) capital. These are our optimization decision variables.</p>
+
+<p>Capital accumulates according to: <p>
+
+\begin{equation}
+k_t^h = k_{t-1}^h - \frac{k_{t-1}^h}{n} + H_t = \sum\limits_{T=0}^{T=t}H_T \left ( 1-\frac{1}{n}\right )^{t-T}
+\end{equation}
+
+\begin{equation}
+k_t^l = k_{t-1}^l - \frac{k_{t-1}^l}{n} + L_t = \sum\limits_{T=0}^{T=t}L_T \left ( 1-\frac{1}{n}\right )^{t-T}
+\end{equation}
+
+
+<p>Where $H_0$ and $L_0$ are exogenously-determined initial amount of high carbon intensity and low carbon intensity capital, respectively. Depreciated high/low capital drops out of their respective capital stocks in every time period and will need to be replaced by H or T investment to meet the energy budget. We allow $H_t$ and $L_t$ to vary to meet the energy demand requirement below, however total stocks of high-intensity and low intensity capital must remain non-negative in each time period.</p>
+
+\begin{equation}
+k^h_t, k^l_t \geq 0 \quad \forall t
+\end{equation}
+
+
+
+<h3>Fixed Energy Demand</h3>
+
+<p>Total electricity capacity demanded is determined exogenously and must be supplied by total capital:</p> 
+
+\begin{equation}
+\bar{G_t} = F_t^h\left(\sum\limits_{T=0}^{T=t}H_T \left ( 1-\frac{1}{n}\right )^{t-T}\right) + F_t^l \left (\sum\limits_{T=0}^{T=t}L_T \left ( 1-\frac{1}{n}\right )^{t-T}\right )
+\end{equation}
+
+<p>Where $F_t^h$ and $F_t^l$ are the efficiency of turning one unit of high or low carbon intensity capital in to MW of electricity. </p>
+
+<h3>Emissions Constraint</h3>
+
+<p>Under a business as usual scenario, we can expect the following total emissions over all time periods:</p>
+
+\begin{equation}
+E_{BAU} = n\left [ (e^h_0 F^h_0 k^h_0) + (e^l_0 F^l_0 k^l_0) \right ]
+\end{equation}
+
+<p>Where $e^h_t$ and $e^l_t$ are carbon intensities of electricity generation for high and low intensity capital, multiplied by n periods. To model a carbon budget, we create a constraint using  a percentage of the business as usual emissions:</p>
+
+\begin{equation}
+\bar{E} = \alpha n\left [ (e^h_0 F^h_0 k^h_0) + (e^l_0 F^l_0 k^l_0) \right ] \quad \alpha \in [0,1]
+\end{equation}
+
+<p>Actual emissions will be dependent on the timing of the switch to low carbon intensity capital:</p>
+
+\begin{equation}
+E_m = \sum\limits_{t=1}^n \left [ (e^h_t F^h_t k^h_t) + (e^l_t F^l_t k^l_t) \right ]
+\end{equation}
+
+<p>Substituting our equations for capital as functions of investment:</p>
+
+\begin{equation}
+E_m = \sum\limits_{t=1}^n \left [e^h_t F^h_t \left(\sum\limits_{T=0}^{T=t}H_T \left ( 1-\frac{1}{n}\right )^{t-T}\right) + e^l_t F^l_t \left(\sum\limits_{T=0}^{T=t}L_T \left ( 1-\frac{1}{n}\right )^{t-T}\right) \right ]
+\end{equation}
+
+
+<p>And our constraint then becomes:</p>
+
+\begin{equation}
+E_{m} \leq \bar{E}
+\end{equation}
+
+
+<h3>Capital Minimization</h3>
+
+<p>We minimize total new capital construction (and therefore minimizing costs), subject to 3, 4b, and 9. Since we are looking to minimize total capital \textit{built}, we do not sum over any levels of investment that are negative. </p>
+
+\begin{equation}
+min \quad C(H,T) = \sum\limits_{t=1, H_t, L_t \geq 0}^n \left( \frac{H_t + L_t}{(1+r)^t}\right)
+\end{equation}
+
+
+<h3>Other Links</h3>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/defineParameters/">Run New Simulation</a></li></ul>
+
+
+
+</body>
+</html>
