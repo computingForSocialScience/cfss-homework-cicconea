@@ -12,33 +12,58 @@
             </label></p>
 
             <p><label>
-                Run Time
+                Simulation Length (years)
                 <input type=number name=period>
             </label></p>
 
             <p><label>
-                Reduction Percent
+                Percent of BAU Emissions (%)
                 <input type=number name=alpha>
             </label></p>
 
             <p><label>
-                Dirty Capital Lifetime
+                Dirty Capital Lifetime (years)
                 <input type=number name=nh>
             </label></p>
 
             <p><label>
-                Clean Capital Lifetime
+                Clean Capital Lifetime (years)
                 <input type=number name=nl>
             </label></p>
 
             <p><label>
-                Speed of Clean Capital Cost Decrease (1-100)
+                Speed of Clean Capital Cost Decrease (1-100), larger is faster
                 <input type=number name=FlScale>
             </label></p>
 
             <p><input type=submit value="Submit"></p>
 
         </form>
+
+<h4>Prior Optimization Queries</h4>
+
+ <table>
+ <tr>
+ <th>Label</th>
+ <th>Transition Speed</th>
+ <th>Length</th>
+ <th>% Reduction</th>
+ <th>% Dirty Capital Life</th>
+ <th>% Clean Capital Life</th>
+
+ </tr>
+ {% for chartLabel, FLScale, period, alpha, nh, nl in oldParams %}
+ <tr>
+ <td>{{chartLabel}}</td>
+ <td>{{FLScale}}</td>
+ <td>{{period}}</td>
+ <td>{{alpha}}</td>
+ <td>{{nh}}</td>
+ <td>{{nl}}</td>
+ </tr>
+ {% endfor %}
+ </table>
+
 
 
 <h3>Other Links</h3>

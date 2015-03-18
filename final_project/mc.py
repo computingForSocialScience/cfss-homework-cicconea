@@ -1,7 +1,5 @@
 from capital_min_model import *
 from func_gen import *
-import matplotlib.pyplot as plt
-import csv
 
 
 def storeData(FLScale, period, alpha, nh, nl):

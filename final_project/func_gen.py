@@ -1,6 +1,5 @@
 import math
 from scipy.stats import norm, truncnorm
-import matplotlib.pyplot as plt
 
 # generates a k-length log growth list w/ initial base and decay mod (mod must be negative)
 # add minimum to allow a theoretical limit to efficiency/carbon intensity
