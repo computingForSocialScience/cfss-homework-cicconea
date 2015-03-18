@@ -42,7 +42,7 @@ def storeData(FLScale, period, alpha, nh, nl):
 
 	minCost, solved, Hp, Hn, Lp, Ln = Solver(period, nh, nl, FlList, FhList, elList, ehList, alpha, H0, L0, r, GList)
 
-	return minCost, solved, Hp, Hn, Lp, Ln
+	return H0, L0, minCost, solved, Hp, Hn, Lp, Ln
 
 
 

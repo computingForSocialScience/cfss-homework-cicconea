@@ -4,8 +4,42 @@
 </head>
 <body>
 
+<h3>{{SolverStatus}} with a Minimum Cost of {{minCost}}</h3>
 
-<div class='matplotlib'><img src="/static/temp/{{plotPng}}"></div>
+<h4>Investment Decisions in Each Period:</h4>
+<div class='matplotlib'><img src="/static/temp/{{investPlotPng}}"></div>
+
+
+<h4>Prior Optimization Queries</h4>
+
+ <table>
+ <tr>
+ <th>Label</th>
+ <th>Transition Speed</th>
+ <th>Length</th>
+ <th>% Reduction</th>
+ <th>% Dirty Capital Life</th>
+ <th>% Clean Capital Life</th>
+
+ </tr>
+ {% for chartLabel, FLScale, period, alpha, nh, nl in oldParams %}
+ <tr>
+ <td>{{chartLabel}}</td>
+ <td>{{FLScale}}</td>
+ <td>{{period}}</td>
+ <td>{{alpha}}</td>
+ <td>{{nh}}</td>
+ <td>{{nl}}</td>
+ </tr>
+ {% endfor %}
+ </table>
+
+<h3>Other Links</h3>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/documentation/">Documentation</a></li>
+            <li><a href="/defineParameters/">Run New Simulation</a></li>
+
 
 
 </body>

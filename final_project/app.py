@@ -6,9 +6,6 @@ matplotlib.use('Agg') # this allows PNG plotting
 import matplotlib.pyplot as plt
 from capital_min_model import *
 from func_gen import *
-from bokeh.plotting import figure, output_file, show
-from bokeh.resources import CDN
-from bokeh.embed import file_html, components
 from mc import *
 import pymysql
 
@@ -88,48 +85,48 @@ def make_results_resp():
 	val = cur.fetchall()
 	nl = val[0][0]
 
-	print chartLabel, FLScale, period, alpha, nh, nl
+	H0, L0, minCost, solved, Hp, Hn, Lp, Ln = storeData(FLScale, period, alpha, nh, nl)
 
-	minCost, solved, Hp, Hn, Lp, Ln = storeData(FLScale, period, alpha, nh, nl)
+	if solved == 1:
+		SolverStatus = "Model Solved Successfully "
+	else: SolverStatus = "Model Not Solved Successfully "
 
-	print solved
-	print Hp
+	Hinvest = np.add(Hp, Hn)
+	Linvest = np.add(Lp, Ln)
 
-	x = range(1, period+1)
-	y = Hp
+
+	dateRange = range(1, period+1)
+
 
 	# generate matplotlib plot
-	fig = plt.figure(figsize=(5,4),dpi=100)
+	fig = plt.figure(figsize=(8,6),dpi=100)
 	axes = fig.add_subplot(1,1,1)
 	# plot the data
-	axes.plot(x,y)
+	axes.plot(dateRange,Hinvest, label= "Dirty Capital Invesment")
+	axes.plot(dateRange,Linvest, label= "Clean Capital Investment")
+
 	# labels
-	axes.set_xlabel('time')
-	axes.set_ylabel('size')
-	axes.set_title("A matplotlib plot")
+	axes.set_xlabel('Years of Simulation')
+	axes.set_ylabel('Investment ($)')
+	axes.set_title(chartLabel)
+	plt.legend(loc = 0)
+
 	# make the temporary file
 	f = tempfile.NamedTemporaryFile(dir='static/temp',suffix='.png',delete=False)
 	# save the figure to the temporary file
 	plt.savefig(f)
 	f.close() # close the file
 	# get the file's name (rather than the whole path) (the template will need that)
-	plotPng = f.name.split('/')[-1]
+	investPlotPng = f.name.split('/')[-1]
+
+
+	query = '''SELECT chartLabel, FLScale, period, alpha, nh, nl FROM params ORDER BY id DESC'''
+	cur.execute(query)
+	oldParams = cur.fetchall()
 
 
 
-	# generate Bokeh HTML elements
-	# create a `figure` object
-	p = figure(title='Positive Investment - Dirty',plot_width=500,plot_height=400)
-	# add the line
-
-	p.line(x,y)
-	# add axis labels
-	p.xaxis.axis_label = "time"
-	p.yaxis.axis_label = "investment"
-	# create the HTML elements
-	figJS,figDiv = components(p,CDN)
-
-	return render_template("results.html",figJS = figJS, figDiv = figDiv, plotPng=plotPng)
+	return render_template("results.html", investPlotPng=investPlotPng, minCost = minCost, SolverStatus = SolverStatus, oldParams = oldParams)
 
 
 
@@ -147,12 +144,10 @@ def define_parameters():
         nl = request.form['nl']
         FlScale = request.form['FlScale']
 
-        print chartLabel, period, alpha, nh, nl, FlScale
-
 
         addLatestRun(chartLabel, FlScale, period, alpha , nh, nl)
 
-        return(render_template('defineParameters.html'))
+        return(redirect('/results/'))
 
 
 
