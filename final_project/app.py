@@ -42,6 +42,15 @@ def make_index_resp():
 
     return render_template('index.html')
 
+@app.route('/documentation/')
+def make_doc_resp():
+    # this function just renders templates/documentation.html when
+    # someone goes to http://127.0.0.1:5000/
+
+    return render_template('documentation.html')
+
+
+
 
 
 @app.route('/results/')
@@ -144,24 +153,6 @@ def define_parameters():
         addLatestRun(chartLabel, FlScale, period, alpha , nh, nl)
 
         return(render_template('defineParameters.html'))
-
-
-
-@app.route('/fig/')
-def fig(period, Hp):
-    import StringIO
-
-    fig = plt.figure(figsize=(5,4),dpi=100)
-    axes = fig.add_subplot(1,1,1)
-    # plot the data
-    axes.plot(range(1, period+1), Hp)
-
-
-
-    img = StringIO.StringIO()
-    fig.savefig(img, format="png")
-    img.seek(0)
-    return send_file(img, mimetype='image/png')
 
 
 
